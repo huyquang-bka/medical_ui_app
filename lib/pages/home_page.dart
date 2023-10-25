@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      maintainBottomViewPadding: false,
       child: Scaffold(
         //bottom navigation bar
         bottomNavigationBar: BottomNavigationBar(
@@ -30,19 +31,19 @@ class _HomePageState extends State<HomePage> {
           onTap: onBottomNavigationBarTap,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home_outlined),
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today),
+              icon: Icon(Icons.calendar_today_outlined),
               label: "Appointment",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.chat),
+              icon: Icon(Icons.chat_outlined),
               label: "Chat",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
+              icon: Icon(Icons.settings_outlined),
               label: "Settings",
             ),
           ],
@@ -90,10 +91,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 25),
               //Card how do you feel today?
               Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 height: 200,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -104,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       //cute animation
                       Container(
-                        width: 150,
+                        width: 100,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -114,38 +115,35 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(width: 20),
                       //Text how do you feel and get started button
                       Expanded(
-                        child: Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              //Text how do you feel
-                              const Text(
-                                "How do you feel today?",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            //Text how do you feel
+                            const Text(
+                              "How do you feel today?",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
                               ),
-                              const SizedBox(height: 12),
-                              //Text fill out your medical card right now
-                              const Text(
-                                  "Fill out your medical card right now!"),
-                              const SizedBox(height: 12),
-                              //Get started button
-                              Container(
-                                padding: const EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.deepPurple,
-                                ),
-                                child: const Center(
-                                    child: Text(
-                                  "Get Started",
-                                  style: TextStyle(color: Colors.white),
-                                )),
+                            ),
+                            const SizedBox(height: 12),
+                            //Text fill out your medical card right now
+                            const Text("Fill out your medical card right now!"),
+                            const SizedBox(height: 12),
+                            //Get started button
+                            Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.deepPurple,
                               ),
-                            ],
-                          ),
+                              child: const Center(
+                                  child: Text(
+                                "Get Started",
+                                style: TextStyle(color: Colors.white),
+                              )),
+                            ),
+                          ],
                         ),
                       ),
                     ]),
@@ -206,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.grey,
                         )),
                   ]),
-              const SizedBox(height: 20),
+              const SizedBox(height: 25),
               //Docker Card
               Expanded(
                   child: ListView(

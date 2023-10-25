@@ -4,7 +4,7 @@ class DoctorCard extends StatelessWidget {
   final String doctorImagePath;
   final double rating;
   final String doctorName;
-  final double doctorExperienceYears;
+  final int doctorExperienceYears;
   const DoctorCard(
       {super.key,
       required this.doctorImagePath,
@@ -46,7 +46,7 @@ class DoctorCard extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             "${doctorExperienceYears.toString()} years of experience",
-            style: TextStyle(fontSize: 12),
+            style: const TextStyle(fontSize: 12),
           ),
         ]),
       ),
