@@ -1,16 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:medical_ui_app/models/category_card.dart';
+import 'package:medical_ui_app/models/doctor_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int currentNavigationBarIndex = 0;
+
+  void onBottomNavigationBarTap(int index) {
+    currentNavigationBarIndex = index;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        //bottom navigation bar
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: currentNavigationBarIndex,
+          type: BottomNavigationBarType.fixed,
+          selectedIconTheme: const IconThemeData(color: Colors.deepPurple),
+          onTap: onBottomNavigationBarTap,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today),
+              label: "Appointment",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.chat),
+              label: "Chat",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: "Settings",
+            ),
+          ],
+        ),
         backgroundColor: Colors.grey[300],
         body: Padding(
-          padding: EdgeInsets.all(25),
+          padding: const EdgeInsets.all(25),
           child: Column(
             children: [
               //header
@@ -68,8 +107,9 @@ class HomePage extends StatelessWidget {
                         width: 150,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Colors.deepPurple[200],
                         ),
+                        child: Lottie.asset(
+                            "lib/assets/animations/animation_lo5gl2z5.json"),
                       ),
                       const SizedBox(width: 20),
                       //Text how do you feel and get started button
@@ -126,30 +166,73 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 25),
               //horizontal list view
-              Container(
+              SizedBox(
                   height: 80,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: const [
                       CategoryCard(
-                        text: "Consultation",
-                        icon: Icons.chat,
+                        text: "Dentist",
+                        //icon from assests
+                        iconPath: "lib/assets/icons/tooth.png",
                       ),
                       CategoryCard(
-                        text: "Consultation",
-                        icon: Icons.chat,
+                        text: "Surgeon",
+                        iconPath: "lib/assets/icons/surgeon.png",
                       ),
                       CategoryCard(
-                        text: "Consultation",
-                        icon: Icons.chat,
+                        text: "Dentist",
+                        //icon from assests
+                        iconPath: "lib/assets/icons/tooth.png",
                       ),
                       CategoryCard(
-                        text: "Consultation",
-                        icon: Icons.chat,
+                        text: "Surgeon",
+                        iconPath: "lib/assets/icons/surgeon.png",
                       ),
                     ],
-                  ))
+                  )),
+              const SizedBox(height: 25),
               //doctor list
+              const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Doctor List",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text("See all",
+                        style: TextStyle(
+                          color: Colors.grey,
+                        )),
+                  ]),
+              const SizedBox(height: 20),
+              //Docker Card
+              Expanded(
+                  child: ListView(
+                //scroll horizontal
+                scrollDirection: Axis.horizontal,
+                children: const [
+                  DoctorCard(
+                    doctorImagePath: "lib/assets/images/avatar.jpg",
+                    rating: 4.5,
+                    doctorName: "Dr. 1",
+                    doctorExperienceYears: 5,
+                  ),
+                  DoctorCard(
+                    doctorImagePath: "lib/assets/images/avatar.jpg",
+                    rating: 5.0,
+                    doctorName: "Dr. 2",
+                    doctorExperienceYears: 10,
+                  ),
+                  DoctorCard(
+                    doctorImagePath: "lib/assets/images/avatar.jpg",
+                    rating: 3.2,
+                    doctorName: "Dr. 3",
+                    doctorExperienceYears: 2,
+                  ),
+                ],
+              ))
             ],
           ),
         ),
